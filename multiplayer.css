@@ -1,0 +1,177 @@
+/* ===== 2-Player additions + mobile fit ===== */
+
+:root {
+  --p1: #00ffc6;   /* player 1 — neon green */
+  --p1-glow: #b0ffe6;
+  --p2: #ff2e97;   /* player 2 — neon pink */
+  --p2-glow: #ffb3d6;
+}
+
+.p1 { color: var(--p1); }
+.p2 { color: var(--p2); }
+
+.score-box.p1 { border-color: rgba(0, 255, 198, 0.5); }
+.score-box.p2 { border-color: rgba(255, 46, 151, 0.5); }
+.score-box.p1 span:last-child { color: var(--p1); }
+.score-box.p2 span:last-child { color: var(--p2); }
+.score-box .label { white-space: nowrap; }
+
+/* Round / wins bar */
+.winbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 6px 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--panel-border);
+  font-size: 0.85rem;
+}
+.winbar .wins b { font-size: 1.1rem; }
+.winbar .round { opacity: 0.8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.winchip[data-wins].active {
+  background: linear-gradient(90deg, #7b5cff, #a68cff);
+  box-shadow: 0 0 14px rgba(123, 92, 255, 0.5);
+}
+
+/* ===== Snake skin picker ===== */
+.skin-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 6px 0 18px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--panel-border);
+}
+.skin-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.skin-label {
+  flex: 0 0 62px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  padding: 0;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+.swatch:hover { transform: translateY(-2px) scale(1.06); }
+.swatch.active {
+  border-color: #fff;
+  box-shadow: 0 0 12px currentColor, 0 0 4px #fff;
+  transform: scale(1.12);
+}
+.swatch:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.5);
+}
+
+/* ===== Dual touch D-pads (mobile) ===== */
+.touch-controls {
+  margin-top: 14px;
+  display: none;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 6px;
+  flex: 1;
+  max-width: 190px;
+}
+.pad-title {
+  grid-column: 1 / 4;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+.pad .tbtn {
+  aspect-ratio: 1 / 1;
+  font-size: 1.1rem;
+  color: #fff;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pad .tbtn:active { transform: scale(0.92); }
+.pad.p1 .tbtn:active { background: var(--p1); color: #06121a; }
+.pad.p2 .tbtn:active { background: var(--p2); color: #06121a; }
+.pad .up    { grid-column: 2; grid-row: 2; }
+.pad .left  { grid-column: 1; grid-row: 3; }
+.pad .down  { grid-column: 2; grid-row: 3; }
+.pad .right { grid-column: 3; grid-row: 3; }
+
+/* Show D-pads on touch devices; keep everything on one screen */
+@media (hover: none) and (pointer: coarse) {
+  .touch-controls { display: flex; }
+  .controls { gap: 6px; }
+}
+
+/* ===== Compact layout so it fits a phone without scrolling ===== */
+@media (max-width: 640px) {
+  body { overflow-y: auto; }
+  .game-wrap {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 10px;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .topbar { margin-bottom: 8px; }
+  .title { font-size: 1.15rem; }
+  .score-box { min-width: 54px; padding: 4px 8px; }
+  .score-box .label { font-size: 0.58rem; }
+  .score-box span:last-child { font-size: 1rem; }
+  .winbar { font-size: 0.78rem; padding: 5px 10px; margin-bottom: 8px; }
+  .controls { margin-top: 10px; }
+  .mode-row { gap: 6px; }
+  .chip { padding: 5px 10px; font-size: 0.72rem; }
+  .mode-label { font-size: 0.72rem; }
+  .hint { font-size: 0.68rem; }
+  .overlay-card h2 { font-size: 1.15rem; }
+  .overlay-card p { font-size: 0.8rem; margin-bottom: 10px; }
+  .skin-pick { padding: 10px; gap: 8px; margin: 4px 0 14px; }
+  .swatch { width: 34px; height: 34px; } /* bigger tap target */
+  .skin-label { flex-basis: 54px; font-size: 0.66rem; }
+}
+
+/* Very short screens (landscape phones): shrink the non-canvas chrome */
+@media (max-height: 520px) {
+  .winbar, .controls .mode-row:nth-child(2) { display: none; }
+}

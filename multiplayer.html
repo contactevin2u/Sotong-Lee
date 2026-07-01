@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐍 Neon Snake — 2 Player</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="multiplayer.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="game-wrap">
+    <header class="topbar">
+      <h1 class="title">🐍 Neon Snake · 2P</h1>
+      <div class="scores">
+        <div class="score-box p1">
+          <span class="label">P1 · WASD</span>
+          <span id="score1">0</span>
+        </div>
+        <div class="score-box p2">
+          <span class="label">P2 · Arrows</span>
+          <span id="score2">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div id="winbar" class="winbar">
+      <span class="wins p1">P1 <b id="wins1">0</b></span>
+      <span class="round">Round <b id="round">1</b></span>
+      <span class="wins p2">P2 <b id="wins2">0</b></span>
+    </div>
+
+    <div class="canvas-holder">
+      <canvas id="board" width="600" height="600"></canvas>
+
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <h2 id="overlay-title">🐍 Neon Snake — 2 Player</h2>
+          <p id="overlay-text">
+            Race for the fruit! Don't hit the walls, yourself, or your rival.
+          </p>
+
+          <div id="skin-pick" class="skin-pick">
+            <div class="skin-row">
+              <span class="skin-label p1">P1 skin</span>
+              <div class="swatches" id="swatches1"></div>
+            </div>
+            <div class="skin-row">
+              <span class="skin-label p2">P2 skin</span>
+              <div class="swatches" id="swatches2"></div>
+            </div>
+          </div>
+
+          <button id="start-btn" class="btn">▶ Play</button>
+          <div class="hint">
+            <b class="p1">Player 1</b> — <b>W A S D</b><br />
+            <b class="p2">Player 2</b> — <b>Arrow Keys</b><br />
+            Press <b>Space</b> to pause.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="mode-row">
+        <span class="mode-label">Speed:</span>
+        <button class="chip" data-speed="140">🐢 Chill</button>
+        <button class="chip active" data-speed="100">🙂 Normal</button>
+        <button class="chip" data-speed="65">🔥 Insane</button>
+      </div>
+      <div class="mode-row">
+        <span class="mode-label">Win at:</span>
+        <button class="chip winchip active" data-wins="3">Best of 3</button>
+        <button class="chip winchip" data-wins="5">Best of 5</button>
+      </div>
+      <div class="mode-row">
+        <label class="toggle">
+          <input type="checkbox" id="wrap-toggle" />
+          <span>Wrap-around walls</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Dual on-screen D-pads for phones -->
+    <div class="touch-controls">
+      <div class="pad p1" data-player="1">
+        <div class="pad-title">P1</div>
+        <button class="tbtn up"    data-dir="up">▲</button>
+        <button class="tbtn left"  data-dir="left">◄</button>
+        <button class="tbtn down"  data-dir="down">▼</button>
+        <button class="tbtn right" data-dir="right">►</button>
+      </div>
+      <div class="pad p2" data-player="2">
+        <div class="pad-title">P2</div>
+        <button class="tbtn up"    data-dir="up">▲</button>
+        <button class="tbtn left"  data-dir="left">◄</button>
+        <button class="tbtn down"  data-dir="down">▼</button>
+        <button class="tbtn right" data-dir="right">►</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="multiplayer.js"></script>
+</body>
+</html>
