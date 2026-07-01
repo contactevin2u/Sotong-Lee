@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐍 Neon Snake</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="game-wrap">
+    <header class="topbar">
+      <h1 class="title">🐍 Neon Snake</h1>
+      <div class="scores">
+        <div class="score-box">
+          <span class="label">Score</span>
+          <span id="score">0</span>
+        </div>
+        <div class="score-box">
+          <span class="label">Best</span>
+          <span id="best">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div id="powerbar" class="powerbar"></div>
+
+    <div class="canvas-holder">
+      <canvas id="board" width="600" height="600"></canvas>
+
+      <!-- Overlay screens -->
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <h2 id="overlay-title">Ready to slither?</h2>
+          <p id="overlay-text">Eat fruit, grab power apples, and chase the glowing bonus!</p>
+          <button id="start-btn" class="btn">▶ Play</button>
+          <div class="hint">
+            Use <b>Arrow Keys</b> / <b>WASD</b> or swipe. Press <b>Space</b> to pause.<br />
+            🐌 Slow-Mo · 🌈 2× Score · 🛡️ Shield · ✂️ Shrink
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="mode-row">
+        <span class="mode-label">Speed:</span>
+        <button class="chip active" data-speed="140">🐢 Chill</button>
+        <button class="chip" data-speed="100">🙂 Normal</button>
+        <button class="chip" data-speed="65">🔥 Insane</button>
+      </div>
+      <div class="mode-row">
+        <label class="toggle">
+          <input type="checkbox" id="wrap-toggle" checked />
+          <span>Wrap-around walls</span>
+        </label>
+        <a class="mode-link" href="index.html">👥 2-Player mode →</a>
+      </div>
+    </div>
+
+    <!-- On-screen D-pad for touch -->
+    <div class="dpad">
+      <button class="dbtn up" data-dir="up">▲</button>
+      <div class="dpad-mid">
+        <button class="dbtn left" data-dir="left">◄</button>
+        <button class="dbtn right" data-dir="right">►</button>
+      </div>
+      <button class="dbtn down" data-dir="down">▼</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
